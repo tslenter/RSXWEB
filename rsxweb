@@ -343,8 +343,6 @@ function guiupgrade() {
         #echo "Copy new apache config ..."
         #cp -rf $RSDEST/web/rsx-apache.conf $APACONFIG/rsx-apache.conf
         #check_file $APACONFIG/rsx-apache.conf
-        #echo "Update syslog-ng with RSX config ..."
-        #cp $RSDEST/config/99RSX-rs.conf $SYSLOGCONF/99RSX-rs.conf
         check_file $SYSLOGCONF/99RSX-rs.conf
         cp -rf $RSDEST/web/* $APACHCONF/
         check_file_reverse $APACHCONF/index.html
