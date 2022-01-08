@@ -172,6 +172,7 @@ function rsxinstall() {
         echo "Write kibana config ..."
         echo 'server.rewriteBasePath: true' >> /etc/kibana/kibana.yml
         echo 'server.basePath: "/kibana"' >> /etc/kibana/kibana.yml
+        echo 'server.publicBaseUrl: "http://127.0.0.1:5601/kibana"' >> /etc/kibana/kibana.yml
     fi
 #Activate service on boot
     echo "Activate startup log configuration ..."
@@ -266,7 +267,7 @@ function kibdef() {
         echo "Kibana 200 code found ..."
         echo "Trying to setup kibana for first use ..."
         echo "Send test message ..."
-        rsview -t
+        rseview -t
         echo "Activate darkmodes ..."
         curl -XPOST -H "Content-Type: application/json" -H "kbn-xsrf: true" localhost:5601/kibana/api/kibana/settings/theme:darkMode -d '{"value": "true"}'
         echo "Set index for Kibana ..."
