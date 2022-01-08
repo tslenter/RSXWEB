@@ -326,7 +326,7 @@ function guiupgrade() {
     cp -rf $RSTMP/RSXWEB/* $RSDEST
     rm -rf $RSTMP/RSXWEB
 #Check packages
-    if [ -e $SYSLOGCONF/99RSX-rs.conf ]; then
+    if [ -e $APACONFIG/rsx-apache.conf ]; then
         echo "Check packages ..."
         check_package "apache2"
         check_package "apache2-utils"
