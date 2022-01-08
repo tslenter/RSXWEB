@@ -287,7 +287,8 @@ function kibdef() {
 #RSX removal
 function rsxremove() {
 #Basic check
-    check_file_gui $APACHCONF/index.php
+    check_file_gui $APACHCONF/rse/rse.php
+    check_file_gui $APACHCONF/rsc/index.php
 #Remove Apache config
     a2ensite eonly-apache
     a2dissite rsx-apache
@@ -406,7 +407,7 @@ do
             clear
             banner
             pre_install
-            gui_upgrade
+            guiupgrade
             quit
             exit
     ;;
