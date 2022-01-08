@@ -219,6 +219,7 @@ function rsxinstall() {
     cp -rf $RSDEST/config/rsx-apache.conf $APACONFIG/rsx-apache.conf
     check_file $APACONFIG/rsx-apache.conf
     a2ensite rsx-apache
+    a2dissite eonly-apache
     a2dissite 000-default
 #Remove default webpage
     echo "Remove default GUI website ..."
@@ -288,18 +289,17 @@ function rsxremove() {
 #Basic check
     check_file_gui $APACHCONF/index.php
 #Remove Apache config
-    rm -rf $certpath/rs.key
-    rm -rf $certpath/rs.crt
+    a2ensite eonly-apache
+    a2dissite rsx-apache
     rm -rf $APACONFIG/rsx-apache.conf
     rm -rf $APACHPHP/conf.d/20-pam.ini
     rm -rf $APACHCONF/*
+    service apache2 restart
 #Remove packages
     echo "Remove config ..."
     rm -rf /etc/kibana/kibana.yml
     echo "Remove packages ..."
-    apt -y purge kibana libapache2-mod-authnz-external php apache2 libapache2-mod-authz-unixgroup php-cli libpam0g-dev php-pear php-dev libapache2-mod-php -y
-    apt -y install syslog-ng
-    apt -y autoremove
+    apt -y purge kibana -y
     echo "RSX removed ..."
 }
 
@@ -356,10 +356,6 @@ function guiupgrade() {
         check_file $APACHCONF/style.css
         echo "Restarting Apache ..."
         service apache2 restart
-        echo "Restarting Syslog-NG ..."
-        service syslog-ng restart
-        echo "To upgrade the default config run the 'Restore default core configuration' option ..."
-        echo "Warning this will override the plugin and custom configuration files ..."
         echo "Upgrade GUI done ..."
     else
         echo "No RSX found, upgrade rejected ..."
