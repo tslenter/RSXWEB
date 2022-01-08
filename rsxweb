@@ -115,7 +115,7 @@ function rsxinstall() {
     fi
     echo "Check GUI ..."
     check_file_gui $APACHCONF/rsc/index.php
-    check_file_reverse $SYSLOGCONF/99RSX-rs.conf
+    check_file_reverse $APACONFIG/rsx-apache.conf
     echo "Check if RSC is installed ..."
     check_file_reverse $APACHCONF/rsc/index.php
     echo "Check if RSE is installed ..."
@@ -288,6 +288,10 @@ function kibdef() {
 #RSX removal
 function rsxremove() {
 #Basic check
+    echo "Check if RSC is installed ..."
+    check_file_reverse $APACHCONF/rsc/index.php
+    echo "Check if RSE is installed ..."
+    check_file_reverse $APACHCONF/rse/index.php
     check_file_gui $APACHCONF/rse/rse.php
     check_file_gui $APACHCONF/rsc/index.php
 #Remove Apache config
@@ -311,6 +315,10 @@ function rsxremove() {
 #Upgrade function
 function guiupgrade() {
     echo "Check if Remote Syslog Core and web is installed ..."
+    echo "Check if RSC is installed ..."
+    check_file_reverse $APACHCONF/rsc/index.php
+    echo "Check if RSE is installed ..."
+    check_file_reverse $APACHCONF/rse/index.php
     check_file $RSECORE/rsecore
     check_file $RSDEST/rsxweb
     echo "Starting upgrade ..."
