@@ -36,7 +36,7 @@ E-mail: info@remotesyslog.com
                 <link href='<?php echo ($url . "/style.css"); ?>' rel="stylesheet" type="text/css">
         </head>
 <!-- Site main -->
-<body VLINK= "#000000" ALINK="#000000">
+<body link="#000000" vlink="#000000" alink="#000000">
 <center>
 <br></br>
 <img src='<?php echo ($url . "/logo.png"); ?>' width="280" height="280" title="Logo" alt="Logo of RSX" />
@@ -47,11 +47,11 @@ E-mail: info@remotesyslog.com
         <label for="username">
                 <i class="fas fa-user"></i>
         </label>
-        <input type="text" name="httpd_username" value="" placeholder="Username" required/>
+        <input type="text" name="httpd_username" value="" placeholder="Username" pattern="[a-zA-Z0-9!@#$%^&*_=+-]{1,100}" title="Some special characters are disabled ..." required/>
         <label for="password">
                 <i class="fas fa-lock"></i>
         </label>
-        <input type="password" name="httpd_password" value="" placeholder="Password" required/>
+        <input type="password" name="httpd_password" value="" placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{4,100}" title="Password must match capital letter - lower letter - number - special character ..." required/>
         <input type="submit" name="login" value="Login" />
 </form>
 </div>
