@@ -152,7 +152,7 @@ function rsxinstall() {
     echo "Install Kibana ..."
     apt update && apt install kibana -y
 #Check config
-    elc="$(cat /etc/elasticsearch/elasticsearch.yml | grep cluster.name:.rsx | head -n 1)"
+    elc="$(cat /etc/elasticsearch/elasticsearch.yml | grep cluster.name:.rsecore | head -n 1)"
     if [[ $elc == *"cluster.name: rsecore"* ]]; then
         echo "Config already written ..."
     else
