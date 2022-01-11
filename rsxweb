@@ -295,6 +295,14 @@ function rsxremove() {
     check_file_gui $APACHCONF/rse/rse.php
     check_file_gui $APACHCONF/rsc/index.php
 #Remove Apache config
+    curl -X DEL "http://localhost:5601/kibana/api/saved_objects/index-pattern/rse-syslog-ng*" -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -d'
+    {
+        "attributes": {
+        "title": "rse-syslog*",
+        "timeFieldName": "@timestamp"
+        }
+    }
+    '
     a2ensite eonly-apache
     a2dissite rsx-apache
     rm -rf $APACONFIG/rsx-apache.conf
